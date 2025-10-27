@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SELF TALK /// MISSION BRIEFING</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,7 +17,7 @@
         body {
             background: #000;
             color: #f5f5f5;
-            font-family: 'Helvetica Neue', 'Arial', sans-serif;
+            font-family: 'Space Grotesk', 'Helvetica Neue', sans-serif;
             overflow-x: hidden;
             cursor: crosshair;
             font-weight: 300;
@@ -60,7 +63,8 @@
             font-size: 28px;
             letter-spacing: 12px;
             text-transform: uppercase;
-            font-weight: 100;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
         }
 
         .nav {
@@ -154,7 +158,28 @@
             font-size: 140px;
             letter-spacing: 40px;
             margin-bottom: 40px;
-            font-weight: 100;
+            font-weight: 900;
+            font-family: 'Orbitron', monospace;
+            animation: textGlitch 3s infinite;
+        }
+
+        @keyframes textGlitch {
+            0%, 90%, 100% {
+                text-shadow: 0 0 1px rgba(255,255,255,0.5);
+                transform: translate(0, 0);
+            }
+            92% {
+                text-shadow: 3px 3px 0 #ff00ff, -3px -3px 0 #00ffff;
+                transform: translate(2px, -2px);
+            }
+            94% {
+                text-shadow: -3px 3px 0 #ffff00, 3px -3px 0 #ff0000;
+                transform: translate(-2px, 2px);
+            }
+            96% {
+                text-shadow: 0 0 20px #fff;
+                transform: translate(0, 0) scale(1.01);
+            }
         }
 
         .status {
@@ -176,7 +201,8 @@
             margin-bottom: 100px;
             text-transform: uppercase;
             letter-spacing: 8px;
-            font-weight: 300;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
             opacity: 0.5;
         }
 
@@ -232,7 +258,8 @@
             font-size: 16px;
             margin-top: 10px;
             letter-spacing: 3px;
-            font-weight: 300;
+            font-weight: 400;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .mental-health {
@@ -259,10 +286,29 @@
             border: 1px solid rgba(255, 0, 0, 0.3);
             color: rgba(255, 0, 0, 0.7);
             padding: 15px 40px;
-            font-weight: 300;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
             font-size: 10px;
             letter-spacing: 3px;
             z-index: 99;
+            animation: warningGlitch 4s infinite;
+        }
+
+        @keyframes warningGlitch {
+            0%, 95%, 100% {
+                border-color: rgba(255, 0, 0, 0.3);
+                color: rgba(255, 0, 0, 0.7);
+            }
+            96% {
+                border-color: #00ff00;
+                color: #00ff00;
+                transform: translateX(-50%) skew(-5deg);
+            }
+            97% {
+                border-color: #ff00ff;
+                color: #ff00ff;
+                transform: translateX(-50%) skew(5deg);
+            }
         }
 
         .manifesto {
@@ -277,7 +323,8 @@
             margin: 0 auto;
             line-height: 2.5;
             letter-spacing: 8px;
-            font-weight: 100;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
         }
 
         footer {
@@ -451,15 +498,52 @@
             coords.textContent = `LAT: ${lat} | LONG: ${long} | ALT: CLASSIFIED`;
         });
 
-        // Random glitch effect
+        // Enhanced random glitch effects
         setInterval(() => {
-            if (Math.random() > 0.95) {
-                document.body.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
+            if (Math.random() > 0.92) {
+                document.body.style.transform = `translate(${Math.random() * 6 - 3}px, ${Math.random() * 6 - 3}px)`;
                 setTimeout(() => {
                     document.body.style.transform = 'translate(0, 0)';
                 }, 50);
             }
-        }, 100);
+        }, 80);
+
+        // Random color glitch on shapes
+        setInterval(() => {
+            if (Math.random() > 0.85) {
+                const shapes = document.querySelectorAll('.shape');
+                const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+                const colors = ['#ff00ff', '#00ffff', '#ffff00', '#ff0000', 'rgba(255, 255, 255, 0.15)'];
+                randomShape.style.borderColor = colors[Math.floor(Math.random() * colors.length)];
+                setTimeout(() => {
+                    randomShape.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                }, 200);
+            }
+        }, 150);
+
+        // Occasional screen distortion
+        setInterval(() => {
+            if (Math.random() > 0.98) {
+                document.body.style.filter = 'hue-rotate(180deg) saturate(3)';
+                setTimeout(() => {
+                    document.body.style.filter = 'none';
+                }, 100);
+            }
+        }, 200);
+
+        // Text glitch on items
+        setInterval(() => {
+            if (Math.random() > 0.9) {
+                const items = document.querySelectorAll('.item-name');
+                const randomItem = items[Math.floor(Math.random() * items.length)];
+                randomItem.style.textShadow = '2px 2px #ff00ff, -2px -2px #00ffff';
+                randomItem.style.transform = 'translate(2px, -2px)';
+                setTimeout(() => {
+                    randomItem.style.textShadow = 'none';
+                    randomItem.style.transform = 'translate(0, 0)';
+                }, 150);
+            }
+        }, 300);
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
