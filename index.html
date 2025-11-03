@@ -24,6 +24,17 @@
             color: #000;
             font-family: 'Pragmatica Extended', 'Helvetica Neue', Arial, sans-serif;
             overflow-x: hidden;
+            transition: background-color 0.05s, color 0.05s;
+        }
+
+        body.strobe-black {
+            background: #000;
+            color: #fff;
+        }
+
+        body.strobe-white {
+            background: #fff;
+            color: #000;
         }
 
         /* Navigation */
@@ -193,6 +204,29 @@
     </section>
 
     <script>
+        // Gaspar Noé style strobe effect on load
+        window.addEventListener('load', () => {
+            const strobe = [
+                { class: 'strobe-black', delay: 0 },
+                { class: 'strobe-white', delay: 100 },
+                { class: 'strobe-black', delay: 200 },
+                { class: 'strobe-white', delay: 300 },
+                { class: 'strobe-black', delay: 400 },
+                { class: 'strobe-white', delay: 500 }
+            ];
+
+            strobe.forEach(({ class: className, delay }) => {
+                setTimeout(() => {
+                    document.body.className = className;
+                }, delay);
+            });
+
+            // Final state - white
+            setTimeout(() => {
+                document.body.className = 'strobe-white';
+            }, 600);
+        });
+
         // Subtle random glitch effects
         setInterval(() => {
             if (Math.random() > 0.95) {
