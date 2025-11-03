@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SELF TALK /// MISSION BRIEFING</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
+    <title>SELFTALK</title>
     <style>
+        @font-face {
+            font-family: 'Pragmatica Extended';
+            src: url('fonts/PragmaticaExtended-Medium.woff2') format('woff2'),
+                 url('fonts/PragmaticaExtended-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,545 +20,158 @@
         }
 
         body {
-            background: #000;
-            color: #f5f5f5;
-            font-family: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+            background: #f5f5f5;
+            color: #000;
+            font-family: 'Pragmatica Extended', 'Helvetica Neue', Arial, sans-serif;
             overflow-x: hidden;
-            cursor: crosshair;
-            font-weight: 300;
         }
 
-        .glitch {
+        /* Navigation */
+        .nav-left {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(255, 255, 255, 0.01),
-                rgba(255, 255, 255, 0.01) 1px,
-                transparent 1px,
-                transparent 2px
-            );
-        }
-
-        .container {
-            position: relative;
-            z-index: 2;
-        }
-
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 30px 50px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            top: 20px;
+            left: 20px;
             z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            font-size: 14px;
+            line-height: 1.4;
+            font-weight: 400;
         }
 
-        .logo {
-            font-size: 28px;
-            letter-spacing: 12px;
-            text-transform: uppercase;
-            font-weight: 700;
-            font-family: 'Orbitron', monospace;
+        .nav-right {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            font-size: 14px;
+            line-height: 1.4;
+            text-align: right;
+            font-weight: 400;
         }
 
-        .nav {
-            display: flex;
-            gap: 40px;
-            font-size: 11px;
-            letter-spacing: 2px;
-            font-weight: 300;
-        }
-
-        .nav span {
+        .nav-left div,
+        .nav-right div {
             cursor: pointer;
-            transition: all 0.3s;
-            opacity: 0.6;
+            transition: opacity 0.3s;
         }
 
-        .nav span:hover {
-            opacity: 1;
+        .nav-left div:hover,
+        .nav-right div:hover {
+            opacity: 0.5;
         }
 
+        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
-        }
-
-        .shapes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .shape {
-            position: absolute;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            animation: rotate 20s infinite linear;
-        }
-
-        .shape:nth-child(1) {
-            width: 500px;
-            height: 500px;
-            top: 10%;
-            left: 10%;
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            animation-duration: 30s;
-        }
-
-        .shape:nth-child(2) {
-            width: 300px;
-            height: 300px;
-            top: 50%;
-            right: 10%;
-            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-            animation-duration: 35s;
-            animation-direction: reverse;
-        }
-
-        .shape:nth-child(3) {
-            width: 600px;
-            height: 200px;
-            bottom: 20%;
-            left: 20%;
-            animation-duration: 40s;
-        }
-
-        .shape:nth-child(4) {
-            width: 250px;
-            height: 250px;
-            top: 25%;
-            right: 30%;
-            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-            animation-duration: 28s;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.2); }
-            to { transform: rotate(360deg) scale(1); }
+            background: #f5f5f5;
         }
 
         .hero-text {
-            text-align: center;
-            z-index: 10;
-            mix-blend-mode: difference;
-        }
-
-        .hero-text h1 {
-            font-size: 140px;
-            letter-spacing: 40px;
-            margin-bottom: 40px;
+            font-size: 22vw;
             font-weight: 900;
-            font-family: 'Orbitron', monospace;
-            animation: textGlitch 3s infinite;
-        }
-
-        @keyframes textGlitch {
-            0%, 90%, 100% {
-                text-shadow: 0 0 1px rgba(255,255,255,0.5);
-                transform: translate(0, 0);
-            }
-            92% {
-                text-shadow: 3px 3px 0 #ff00ff, -3px -3px 0 #00ffff;
-                transform: translate(2px, -2px);
-            }
-            94% {
-                text-shadow: -3px 3px 0 #ffff00, 3px -3px 0 #ff0000;
-                transform: translate(-2px, 2px);
-            }
-            96% {
-                text-shadow: 0 0 20px #fff;
-                transform: translate(0, 0) scale(1.01);
-            }
-        }
-
-        .status {
-            font-size: 10px;
-            letter-spacing: 4px;
-            color: rgba(255, 255, 255, 0.4);
-            font-weight: 300;
-        }
-
-        .section {
-            min-height: 100vh;
-            padding: 150px 100px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 12px;
-            margin-bottom: 100px;
+            letter-spacing: -0.02em;
+            line-height: 0.9;
             text-transform: uppercase;
-            letter-spacing: 8px;
-            font-weight: 700;
-            font-family: 'Orbitron', monospace;
-            opacity: 0.5;
         }
 
-        .grid {
+        /* Products Section */
+        .products {
+            min-height: 100vh;
+            padding: 100px 20px 100px 20px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 80px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1400px;
+            width: 100%;
         }
 
-        .item {
+        .product-item {
+            text-align: center;
+        }
+
+        .product-image {
+            width: 100%;
             aspect-ratio: 3/4;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
+            background: #ddd;
+            margin-bottom: 15px;
             overflow: hidden;
-            cursor: pointer;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            background: rgba(255, 255, 255, 0.01);
         }
 
-        .item:hover {
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-10px);
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .item::before {
-            content: 'CLASSIFIED';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-25deg);
-            font-size: 60px;
-            opacity: 0.03;
-            letter-spacing: 10px;
-            font-weight: 100;
-        }
-
-        .item-info {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            z-index: 10;
-        }
-
-        .item-code {
-            font-size: 9px;
-            color: rgba(255, 255, 255, 0.4);
-            letter-spacing: 2px;
-            font-weight: 300;
-        }
-
-        .item-name {
-            font-size: 16px;
-            margin-top: 10px;
-            letter-spacing: 3px;
-            font-weight: 400;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .mental-health {
-            background: transparent;
-        }
-
-        .coordinates {
-            position: fixed;
-            bottom: 30px;
-            right: 50px;
-            font-size: 9px;
-            z-index: 100;
-            color: rgba(255, 255, 255, 0.3);
-            letter-spacing: 2px;
-            font-weight: 300;
-        }
-
-        .warning {
-            position: fixed;
-            top: 120px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: transparent;
-            border: 1px solid rgba(255, 0, 0, 0.3);
-            color: rgba(255, 0, 0, 0.7);
-            padding: 15px 40px;
-            font-weight: 700;
-            font-family: 'Orbitron', monospace;
-            font-size: 10px;
-            letter-spacing: 3px;
-            z-index: 99;
-            animation: warningGlitch 4s infinite;
-        }
-
-        @keyframes warningGlitch {
-            0%, 95%, 100% {
-                border-color: rgba(255, 0, 0, 0.3);
-                color: rgba(255, 0, 0, 0.7);
-            }
-            96% {
-                border-color: #00ff00;
-                color: #00ff00;
-                transform: translateX(-50%) skew(-5deg);
-            }
-            97% {
-                border-color: #ff00ff;
-                color: #ff00ff;
-                transform: translateX(-50%) skew(5deg);
-            }
-        }
-
-        .manifesto {
-            background: transparent;
-            padding: 200px 100px;
-            text-align: center;
-        }
-
-        .manifesto-text {
-            font-size: 48px;
-            max-width: 900px;
-            margin: 0 auto;
-            line-height: 2.5;
-            letter-spacing: 8px;
-            font-weight: 700;
-            font-family: 'Orbitron', monospace;
-        }
-
-        footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 100px;
-            text-align: center;
-            font-size: 9px;
-            letter-spacing: 3px;
-            font-weight: 300;
-            opacity: 0.4;
-        }
-
-        .terminal {
-            margin-top: 100px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            background: rgba(255, 255, 255, 0.01);
-        }
-
-        .terminal-line {
-            margin: 15px 0;
-            font-size: 10px;
-            letter-spacing: 2px;
-            opacity: 0.6;
-            font-weight: 300;
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.6);
-            animation: cursorBlink 1s infinite;
-        }
-
-        @keyframes cursorBlink {
-            0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0; }
+        .product-name {
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         @media (max-width: 768px) {
-            .hero-text h1 {
-                font-size: 60px;
+            .product-grid {
+                grid-template-columns: 1fr;
             }
-            .section-title {
-                font-size: 40px;
-            }
-            .logo {
-                font-size: 20px;
-                letter-spacing: 4px;
-            }
-            .nav {
-                display: none;
+
+            .hero-text {
+                font-size: 15vw;
             }
         }
     </style>
 </head>
 <body>
-    <div class="glitch"></div>
-
-    <div class="warning">⚠ PSYCHOLOGICAL OPERATION IN PROGRESS ⚠</div>
-
-    <header>
-        <div class="logo">SELF TALK</div>
-        <div class="nav">
-            <span>[DEPLOY]</span>
-            <span>[MISSION]</span>
-            <span>[INTEL]</span>
-            <span>[EXTRACT]</span>
-        </div>
-    </header>
-
-    <div class="coordinates" id="coords">LAT: 00.0000 | LONG: 00.0000 | ALT: CLASSIFIED</div>
-
-    <div class="container">
-        <section class="hero">
-            <div class="shapes">
-                <div class="shape"></div>
-                <div class="shape"></div>
-                <div class="shape"></div>
-                <div class="shape"></div>
-            </div>
-            <div class="hero-text">
-                <h1>SELF TALK</h1>
-                <div class="status">[ SYSTEM ONLINE /// MENTAL WARFARE ACTIVE ]</div>
-            </div>
-        </section>
-
-        <section class="section mental-health">
-            <div class="section-title">/// DEPLOYMENT UNITS</div>
-
-            <div class="grid">
-                <div class="item">
-                    <div class="item-info">
-                        <div class="item-code">ST-001-MH</div>
-                        <div class="item-name">TACTICAL HOODIE</div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="item-info">
-                        <div class="item-code">ST-002-MH</div>
-                        <div class="item-name">PARANOIA JACKET</div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="item-info">
-                        <div class="item-code">ST-003-MH</div>
-                        <div class="item-name">DISSOCIATION CARGO</div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="item-info">
-                        <div class="item-code">ST-004-MH</div>
-                        <div class="item-name">ANXIETY VEST</div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="item-info">
-                        <div class="item-code">ST-005-MH</div>
-                        <div class="item-name">INTRUSIVE TEE</div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="item-info">
-                        <div class="item-code">ST-006-MH</div>
-                        <div class="item-name">COMBAT SWEATS</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="manifesto">
-            <div class="manifesto-text">
-                MENTAL WARFARE<br>
-                ////<br>
-                LUXURY TRAUMA<br>
-                ////<br>
-                SELF DESTRUCTION AS FORM
-            </div>
-
-            <div class="terminal">
-                <div class="terminal-line">> INITIALIZING CONSCIOUSNESS...</div>
-                <div class="terminal-line">> LOADING PERCEPTION.EXE</div>
-                <div class="terminal-line">> WARNING: REALITY.SYS CORRUPTED</div>
-                <div class="terminal-line">> DEPLOY SELF TALK PROTOCOL</div>
-                <div class="terminal-line">> <span class="cursor"></span></div>
-            </div>
-        </section>
-
-        <footer>
-            <div>SELF TALK /// PSYOP DIVISION</div>
-            <div style="margin-top: 20px;">COORDINATES CLASSIFIED /// TRANSMISSIONS ENCRYPTED</div>
-            <div style="margin-top: 30px;">[ THIS IS NOT A DRILL ]</div>
-        </footer>
+    <!-- Navigation -->
+    <div class="nav-left">
+        <div>SHOP</div>
+        <div>GALLERY</div>
     </div>
 
-    <script>
-        // Mouse tracking coordinates
-        document.addEventListener('mousemove', (e) => {
-            const coords = document.getElementById('coords');
-            const lat = (e.clientY / window.innerHeight * 90).toFixed(4);
-            const long = (e.clientX / window.innerWidth * 180).toFixed(4);
-            coords.textContent = `LAT: ${lat} | LONG: ${long} | ALT: CLASSIFIED`;
-        });
+    <div class="nav-right">
+        <div>INFO & CONTACT</div>
+        <div>LIVESTREAM</div>
+    </div>
 
-        // Enhanced random glitch effects
-        setInterval(() => {
-            if (Math.random() > 0.92) {
-                document.body.style.transform = `translate(${Math.random() * 6 - 3}px, ${Math.random() * 6 - 3}px)`;
-                setTimeout(() => {
-                    document.body.style.transform = 'translate(0, 0)';
-                }, 50);
-            }
-        }, 80);
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">SELFTALK</div>
+    </section>
 
-        // Random color glitch on shapes
-        setInterval(() => {
-            if (Math.random() > 0.85) {
-                const shapes = document.querySelectorAll('.shape');
-                const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
-                const colors = ['#ff00ff', '#00ffff', '#ffff00', '#ff0000', 'rgba(255, 255, 255, 0.15)'];
-                randomShape.style.borderColor = colors[Math.floor(Math.random() * colors.length)];
-                setTimeout(() => {
-                    randomShape.style.borderColor = 'rgba(255, 255, 255, 0.15)';
-                }, 200);
-            }
-        }, 150);
+    <!-- Products Section -->
+    <section class="products">
+        <div class="product-grid">
+            <div class="product-item">
+                <div class="product-image">
+                    <img src="https://placeholder.co/400x533/ddd/000?text=PHARMA+T-SHIRT" alt="Pharma T-Shirt">
+                </div>
+                <div class="product-name">PHARMA T-SHIRT</div>
+            </div>
 
-        // Occasional screen distortion
-        setInterval(() => {
-            if (Math.random() > 0.98) {
-                document.body.style.filter = 'hue-rotate(180deg) saturate(3)';
-                setTimeout(() => {
-                    document.body.style.filter = 'none';
-                }, 100);
-            }
-        }, 200);
+            <div class="product-item">
+                <div class="product-image">
+                    <img src="https://placeholder.co/400x533/ddd/000?text=GUIDED+MEDITATION" alt="Guided Meditation Hoodie">
+                </div>
+                <div class="product-name">GUIDED MEDITATION HOODIE</div>
+            </div>
 
-        // Text glitch on items
-        setInterval(() => {
-            if (Math.random() > 0.9) {
-                const items = document.querySelectorAll('.item-name');
-                const randomItem = items[Math.floor(Math.random() * items.length)];
-                randomItem.style.textShadow = '2px 2px #ff00ff, -2px -2px #00ffff';
-                randomItem.style.transform = 'translate(2px, -2px)';
-                setTimeout(() => {
-                    randomItem.style.textShadow = 'none';
-                    randomItem.style.transform = 'translate(0, 0)';
-                }, 150);
-            }
-        }, 300);
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href'))?.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+            <div class="product-item">
+                <div class="product-image">
+                    <img src="https://placeholder.co/400x533/ddd/000?text=RESPONDER+HOODIE" alt="Responder Hoodie">
+                </div>
+                <div class="product-name">RESPONDER HOODIE</div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
