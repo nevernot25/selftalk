@@ -34,7 +34,7 @@
             z-index: 100;
             font-size: 14px;
             line-height: 1.4;
-            font-weight: 400;
+            font-weight: 600;
         }
 
         .nav-right {
@@ -45,7 +45,7 @@
             font-size: 14px;
             line-height: 1.4;
             text-align: right;
-            font-weight: 400;
+            font-weight: 600;
         }
 
         .nav-left div,
@@ -70,11 +70,12 @@
         }
 
         .hero-text {
-            font-size: 28vw;
+            font-size: 18vw;
             font-weight: 900;
-            letter-spacing: -0.05em;
+            letter-spacing: -0.03em;
             line-height: 0.75;
             text-transform: uppercase;
+            transform: scaleY(2.5);
         }
 
         /* Products Section */
@@ -127,7 +128,24 @@
 
             .hero-text {
                 font-size: 15vw;
+                transform: scaleY(2.5);
             }
+        }
+
+        @keyframes glitch {
+            0%, 100% {
+                transform: translate(0);
+            }
+            33% {
+                transform: translate(-2px, 2px);
+            }
+            66% {
+                transform: translate(2px, -2px);
+            }
+        }
+
+        .glitch-effect {
+            animation: glitch 0.3s ease-in-out;
         }
     </style>
 </head>
@@ -173,5 +191,32 @@
             </div>
         </div>
     </section>
+
+    <script>
+        // Subtle random glitch effects
+        setInterval(() => {
+            if (Math.random() > 0.95) {
+                const elements = [
+                    document.querySelector('.hero-text'),
+                    ...document.querySelectorAll('.product-name')
+                ];
+                const randomElement = elements[Math.floor(Math.random() * elements.length)];
+                randomElement.classList.add('glitch-effect');
+                setTimeout(() => {
+                    randomElement.classList.remove('glitch-effect');
+                }, 300);
+            }
+        }, 2000);
+
+        // Occasional subtle screen distortion
+        setInterval(() => {
+            if (Math.random() > 0.98) {
+                document.body.style.filter = 'hue-rotate(5deg) contrast(1.1)';
+                setTimeout(() => {
+                    document.body.style.filter = 'none';
+                }, 100);
+            }
+        }, 3000);
+    </script>
 </body>
 </html>
