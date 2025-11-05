@@ -90,7 +90,7 @@
 
         .hero-text {
             font-family: 'Pragmatica Condensed', 'Pragmatica Extended', sans-serif;
-            font-size: 45vw;
+            font-size: 31.5vw;
             font-weight: 400;
             letter-spacing: -0.03em;
             line-height: 0.75;
@@ -147,7 +147,7 @@
             }
 
             .hero-text {
-                font-size: 37.5vw;
+                font-size: 26.25vw;
                 transform: scale(0.555, 1.5);
             }
         }
@@ -310,34 +310,13 @@
             }
         }, 3000);
 
-        // Glitchy hover effect for Weaponized Vulnerability with random meditation texts
+        // Glitchy hover effect for Weaponized Vulnerability
         const vulnerabilityText = document.querySelector('.vulnerability-text');
         const vulnerabilityGlitch = document.querySelector('.vulnerability-glitch');
-
-        const meditationPhrases = [
-            'BREATHE IN',
-            'BREATHE OUT',
-            'LET GO',
-            'RELEASE',
-            'SURRENDER',
-            'BE PRESENT',
-            'OBSERVE',
-            'ACCEPT',
-            'FEEL IT',
-            'NOTICE',
-            'SOFTEN',
-            'EXPAND',
-            'ALLOW',
-            'WITNESS',
-            'DISSOLVE'
-        ];
 
         vulnerabilityText.addEventListener('mouseenter', () => {
             const glitchInterval = setInterval(() => {
                 if (Math.random() > 0.7) {
-                    // Pick random phrase
-                    const randomPhrase = meditationPhrases[Math.floor(Math.random() * meditationPhrases.length)];
-                    vulnerabilityGlitch.textContent = randomPhrase;
                     vulnerabilityGlitch.classList.add('show');
                     setTimeout(() => {
                         vulnerabilityGlitch.classList.remove('show');
