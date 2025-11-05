@@ -90,7 +90,7 @@
 
         .hero-text {
             font-family: 'Pragmatica Condensed', 'Pragmatica Extended', sans-serif;
-            font-size: 18vw;
+            font-size: 90vw;
             font-weight: 400;
             letter-spacing: -0.03em;
             line-height: 0.75;
@@ -147,7 +147,7 @@
             }
 
             .hero-text {
-                font-size: 15vw;
+                font-size: 75vw;
                 transform: scale(0.555, 1.5);
             }
         }
@@ -176,6 +176,7 @@
             justify-content: center;
             padding: 100px 20px;
             background: #f5f5f5;
+            position: relative;
         }
 
         .vulnerability-text {
@@ -186,6 +187,28 @@
             line-height: 0.75;
             text-transform: uppercase;
             transform: scale(0.555, 1.5);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .vulnerability-glitch {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.555, 1.5);
+            font-family: 'Pragmatica Condensed', 'Pragmatica Extended', sans-serif;
+            font-size: 12vw;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            opacity: 0;
+            pointer-events: none;
+            color: #ff0000;
+            mix-blend-mode: difference;
+        }
+
+        .vulnerability-glitch.show {
+            opacity: 1;
         }
     </style>
 </head>
@@ -235,11 +258,12 @@
     <!-- Weaponized Vulnerability Section -->
     <section class="vulnerability">
         <div class="vulnerability-text">WEAPONIZED VULNERABILITY</div>
+        <div class="vulnerability-glitch">GUIDED MEDITATION</div>
     </section>
 
     <script>
-        // Extreme Gaspar Noé style strobe effect on load
-        window.addEventListener('load', () => {
+        // Extreme Gaspar Noé style strobe effect - immediate
+        (function() {
             const strobe = [
                 { class: 'strobe-black', delay: 0 },
                 { class: 'strobe-white', delay: 50 },
@@ -259,7 +283,7 @@
             setTimeout(() => {
                 document.body.className = 'strobe-white';
             }, 300);
-        });
+        })();
 
         // Subtle random glitch effects
         setInterval(() => {
@@ -285,6 +309,26 @@
                 }, 100);
             }
         }, 3000);
+
+        // Glitchy hover effect for Weaponized Vulnerability
+        const vulnerabilityText = document.querySelector('.vulnerability-text');
+        const vulnerabilityGlitch = document.querySelector('.vulnerability-glitch');
+
+        vulnerabilityText.addEventListener('mouseenter', () => {
+            const glitchInterval = setInterval(() => {
+                if (Math.random() > 0.7) {
+                    vulnerabilityGlitch.classList.add('show');
+                    setTimeout(() => {
+                        vulnerabilityGlitch.classList.remove('show');
+                    }, 30 + Math.random() * 50);
+                }
+            }, 50);
+
+            vulnerabilityText.addEventListener('mouseleave', () => {
+                clearInterval(glitchInterval);
+                vulnerabilityGlitch.classList.remove('show');
+            }, { once: true });
+        });
     </script>
 </body>
 </html>
