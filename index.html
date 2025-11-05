@@ -13,6 +13,14 @@
             font-style: normal;
         }
 
+        @font-face {
+            font-family: 'Pragmatica Condensed';
+            src: url('fonts/PragmaticaCondensed-Book.woff2') format('woff2'),
+                 url('fonts/PragmaticaCondensed-Book.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -81,12 +89,13 @@
         }
 
         .hero-text {
+            font-family: 'Pragmatica Condensed', 'Pragmatica Extended', sans-serif;
             font-size: 18vw;
-            font-weight: 900;
+            font-weight: 400;
             letter-spacing: -0.03em;
             line-height: 0.75;
             text-transform: uppercase;
-            transform: scaleY(2.5);
+            transform: scale(0.555, 1.5);
         }
 
         /* Products Section */
@@ -139,7 +148,7 @@
 
             .hero-text {
                 font-size: 15vw;
-                transform: scaleY(2.5);
+                transform: scale(0.555, 1.5);
             }
         }
 
@@ -157,6 +166,26 @@
 
         .glitch-effect {
             animation: glitch 0.3s ease-in-out;
+        }
+
+        /* Weaponized Vulnerability Section */
+        .vulnerability {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px;
+            background: #f5f5f5;
+        }
+
+        .vulnerability-text {
+            font-family: 'Pragmatica Condensed', 'Pragmatica Extended', sans-serif;
+            font-size: 12vw;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            line-height: 0.75;
+            text-transform: uppercase;
+            transform: scale(0.555, 1.5);
         }
     </style>
 </head>
@@ -203,16 +232,21 @@
         </div>
     </section>
 
+    <!-- Weaponized Vulnerability Section -->
+    <section class="vulnerability">
+        <div class="vulnerability-text">WEAPONIZED VULNERABILITY</div>
+    </section>
+
     <script>
-        // Gaspar Noé style strobe effect on load
+        // Extreme Gaspar Noé style strobe effect on load
         window.addEventListener('load', () => {
             const strobe = [
                 { class: 'strobe-black', delay: 0 },
-                { class: 'strobe-white', delay: 100 },
+                { class: 'strobe-white', delay: 50 },
+                { class: 'strobe-black', delay: 100 },
+                { class: 'strobe-white', delay: 150 },
                 { class: 'strobe-black', delay: 200 },
-                { class: 'strobe-white', delay: 300 },
-                { class: 'strobe-black', delay: 400 },
-                { class: 'strobe-white', delay: 500 }
+                { class: 'strobe-white', delay: 250 }
             ];
 
             strobe.forEach(({ class: className, delay }) => {
@@ -224,7 +258,7 @@
             // Final state - white
             setTimeout(() => {
                 document.body.className = 'strobe-white';
-            }, 600);
+            }, 300);
         });
 
         // Subtle random glitch effects
